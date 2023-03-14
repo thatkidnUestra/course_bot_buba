@@ -15,12 +15,11 @@ REDIS_DB_FSM = int(os.getenv("REDIS_DB_FSM", default=0))
 REDIS_DB_JOBSTORE = int(os.getenv("REDIS_DB_JOBSTORE", default=1))
 REDIS_DB_JOIN_LIST = int(os.getenv("REDIS_DB_JOIN_LIST", default=2))
 
-
 admins = [
-    417804053
+    1955750981,
+    449630996
 ]
 
 ip = os.getenv("ip")
-
 
 POSTGRES_URL = f"postgresql://{PGUSER}:{PGPASSWORD}@{ip}/{DATABASE}"
