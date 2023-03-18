@@ -37,11 +37,14 @@ async def info_cmd(message: types.Message):
     username = message.from_user.username  # Запрашиваем username
     telegram_id = message.from_user.id  # Запрашиваем Telegram ID
 
+    chat_id = message.chat.id
+
     await message.answer('Информация из Update:\n'
                          f'Имя: {first_name}\n'
                          f'Фамилия: {last_name}\n'
                          f'Юзернейм: {username}\n'
-                         f'Telegram ID: {telegram_id}')  # Простая отправка сообщения, где нужен только текст
+                         f'Telegram ID: {telegram_id}\n'
+                         f'ID CHAT: {chat_id}')  # Простая отправка сообщения, где нужен только текст
 
     '''
     \n - перенос на след. строку
