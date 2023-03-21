@@ -28,6 +28,7 @@ async def get_random_number(call: types.CallbackQuery):
 
     await call.message.edit_text(f'Вот ваше число: {number}', reply_markup=inline_back)
 
+
 @dp.callback_query_handler(Text(equals='show_meme'))
 async def get_super_meme(call: types.CallbackQuery):
     await call.message.delete()
@@ -44,4 +45,14 @@ await call.message.answer_photo(
 photo=ссылка на фото,
 caption='Вот этот мем))))'
 )
+'''
+
+'''
+    file_id = 'AwACAgIAAxkBAAICj2QZyx-mb0qfKgAB-51GUmSxJLbJ3gAC0CkAAj5L0EhR39UoK_CaJC8E'
+    await call.message.answer_voice(
+        voice=file_id
+    )
+    
+
+
 '''
