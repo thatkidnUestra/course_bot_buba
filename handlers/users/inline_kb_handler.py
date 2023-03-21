@@ -9,7 +9,8 @@ import random
 
 @dp.callback_query_handler(Text(equals='go_back'))
 async def go_back(call: types.CallbackQuery):
-    await call.message.edit_text('Меню доступно ниже:', reply_markup=inline_menu)
+    await call.message.delete()
+    await just_button_reaction(message=call.message)
 
     '''
     await just_button_reaction(message=call.message) <- Это мы вызвали функцию для отправки сообщения с изначальной клавиатурой
@@ -26,6 +27,15 @@ async def get_random_number(call: types.CallbackQuery):
     """
 
     await call.message.edit_text(f'Вот ваше число: {number}', reply_markup=inline_back)
+
+@dp.callback_query_handler(Text(equals='show_meme'))
+async def get_super_meme(call: types.CallbackQuery):
+    await call.message.delete()
+    await call.message.answer_photo(
+        photo='https://i.ytimg.com/vi/a31-_ivqtRM/maxresdefault.jpg',
+        caption='лови!',
+        reply_markup=inline_back
+    )
 
 
 '''
