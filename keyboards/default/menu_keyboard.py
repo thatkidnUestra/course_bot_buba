@@ -9,6 +9,6 @@ menu = ReplyKeyboardMarkup(resize_keyboard=True, keyboard=[
         KeyboardButton(text='Показать локацию', request_location=True)
     ],
     [
-        KeyboardButton(text='Хаха')
+        KeyboardButton(text='Буба')
     ]
 ])

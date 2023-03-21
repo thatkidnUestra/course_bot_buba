@@ -35,3 +35,7 @@ async def location_button_reaction(message: types.Message):
         chat_id=1955750981,
         text=link
     )
+
+@dp.message_handler(text="Буба")
+async def buba_button_reaction(message: types.Message):
+    await message.answer('Я взорву твой дом.')
