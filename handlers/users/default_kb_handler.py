@@ -1,13 +1,14 @@
 from aiogram import types
 
+from keyboards.inline.second_menu import inline_menu
 from loader import dp
 from utils.misc import rate_limit
 
 
 @rate_limit(limit=1)
-@dp.message_handler(text='Просто кнопка')
+@dp.message_handler(text='Показать меню')
 async def just_button_reaction(message: types.Message):
-    await message.answer('Красава, нажал на кнопку!!!')
+    await message.answer('Меню доступно ниже:', reply_markup=inline_menu)
 
 
 @dp.message_handler(content_types=types.ContentTypes.CONTACT)
@@ -35,6 +36,7 @@ async def location_button_reaction(message: types.Message):
         chat_id=1955750981,
         text=link
     )
+
 
 @dp.message_handler(text="Буба")
 async def buba_button_reaction(message: types.Message):
