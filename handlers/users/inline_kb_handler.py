@@ -39,6 +39,20 @@ async def get_super_meme(call: types.CallbackQuery):
     )
 
 
+@dp.callback_query_handler(Text(equals='ur_soul_is_mine'))
+async def run_away(call: types.CallbackQuery):
+    await call.message.delete()
+    await call.answer('а теперь..', show_alert=True)
+    await call.message.answer_photo(
+        photo='https://www.meme-arsenal.com/memes/10b4258a21dd26c4c7c5218e1e0ec040.jpg',
+        caption='...',
+        reply_markup=inline_back
+    )
+    file_id = 'AwACAgIAAxkBAAICoGQd1r2KVCihqz055ILt1Tk5n7B-AALhJwACMjvxSCYrg0uspxLGLwQ'
+    await call.message.answer_voice(
+        voice=file_id
+    )
+
 '''
 await call.message.delete()
 await call.message.answer_photo(

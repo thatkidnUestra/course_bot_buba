@@ -12,7 +12,7 @@ inline_menu = InlineKeyboardMarkup(row_width=3,
                                            InlineKeyboardButton(text='Пойти на работу', callback_data='go_work'),
                                        ],
                                        [
-                                           InlineKeyboardButton(text='Уснуть', callback_data='go_sleep')
+                                           InlineKeyboardButton(text='...', callback_data='ur_soul_is_mine')
                                        ]
                                    ])
 
