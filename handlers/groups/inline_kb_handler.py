@@ -1,8 +1,8 @@
 from aiogram import types
 from aiogram.dispatcher.filters import Text
 
-from handlers.users.default_kb_handler import just_button_reaction
-from keyboards.inline.second_menu import inline_menu, inline_back
+from handlers.groups.default_kb_handler import just_button_reaction
+from keyboards.inline.second_menu import inline_back
 from loader import dp
 import random
 
