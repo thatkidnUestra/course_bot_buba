@@ -2,13 +2,13 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 menu = ReplyKeyboardMarkup(resize_keyboard=True, keyboard=[
     [
-        KeyboardButton(text='Показать номер', request_contact=True),
-        KeyboardButton(text='Показать меню')
+        KeyboardButton(text='Смотреть объявления'),
     ],
     [
-        KeyboardButton(text='Показать локацию', request_location=True)
+        KeyboardButton(text='Новое объявлние'),
+        KeyboardButton(text='Изменить "О себе"')
     ],
     [
-        KeyboardButton(text='Буба')
+        KeyboardButton(text='Моё объявление')
     ]
 ])
