@@ -16,6 +16,13 @@ async def go_back(call: types.CallbackQuery):
     await just_button_reaction(message=call.message) <- Это мы вызвали функцию для отправки сообщения с изначальной клавиатурой
     '''
 
+@dp.callback_query_handler(Text(equals='delete_double'))
+async def delete_double(call: types.CallbackQuery):
+    await dp.bot.delete_message(
+        chat_id=call.from_user.id,
+        message_id=call.message.message_id
+    )
+
 
 @dp.callback_query_handler(Text(equals='get_number'))
 async def get_random_number(call: types.CallbackQuery):
@@ -39,18 +46,24 @@ async def get_super_meme(call: types.CallbackQuery):
     )
 
 
+@dp.callback_query_handler(Text(equals='go_work'))
+async def working(call: types.CallbackQuery):
+    await call.answer('ты шагаешь на работу..', show_alert=True)
+
+
+
 @dp.callback_query_handler(Text(equals='ur_soul_is_mine'))
 async def run_away(call: types.CallbackQuery):
+    file_id = 'AwACAgIAAxkBAAICoGQd1r2KVCihqz055ILt1Tk5n7B-AALhJwACMjvxSCYrg0uspxLGLwQ'
+    await call.message.answer_voice(
+        voice=file_id
+    )
     await call.message.delete()
     await call.answer('а теперь..', show_alert=True)
     await call.message.answer_photo(
         photo='https://www.meme-arsenal.com/memes/10b4258a21dd26c4c7c5218e1e0ec040.jpg',
         caption='...',
         reply_markup=inline_back
-    )
-    file_id = 'AwACAgIAAxkBAAICoGQd1r2KVCihqz055ILt1Tk5n7B-AALhJwACMjvxSCYrg0uspxLGLwQ'
-    await call.message.answer_voice(
-        voice=file_id
     )
 
 '''
