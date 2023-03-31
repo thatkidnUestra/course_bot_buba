@@ -62,3 +62,24 @@ async def get_name(message: types.Message, state: FSMContext):
 
     await message.answer(f'✅ Теперь я знаю, что вас зовут - {name}', reply_markup=back)
     await state.reset_state(True)
+
+
+@dp.callback_query_handler(Text(equals='edit_nickname'))
+async def edit_user_nickname(call: types.CallbackQuery):
+    await call.message.edit_text('🔷 Введите ваш новый никнейм')
+    await GetInfo.nickname.set()
+
+
+@dp.message_handler(state=GetInfo.nickname)
+async def get_nickname(message: types.Message, state: FSMContext):
+    nickname = message.text
+
+    await message.delete()
+
+    await dp.bot.delete_message(
+        chat_id=message.chat.id,
+        message_id=message.message_id - 1
+    )
+
+    await message.answer(f'✅ Теперь я знаю, что ваш никнейм - {nickname}', reply_markup=back)
+    await state.reset_state(True)
