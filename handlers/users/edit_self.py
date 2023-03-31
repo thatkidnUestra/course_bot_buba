@@ -95,14 +95,18 @@ async def edit_user_age(call: types.CallbackQuery):
 async def get_age(message: types.Message, state: FSMContext):
     age = message.text
 
-    await message.delete()
+    if age.isdigit():
 
-    await dp.bot.delete_message(
-        chat_id=message.chat.id,
-        message_id=message.message_id - 1
-    )
+        await message.delete()
 
-    await message.answer(f'Теперь я знаю, что тебе {age} лет', reply_markup=back)
-    await state.reset_state(True)
+        await dp.bot.delete_message(
+            chat_id=message.chat.id,
+            message_id=message.message_id - 1
+        )
 
+        await message.answer(f'Теперь я знаю, что тебе {age} лет', reply_markup=back)
+        await state.reset_state(True)
+
+    else:
+        await message.answer('Вы ввели не число. Попробуйте еще раз.')
 
