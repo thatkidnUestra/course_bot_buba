@@ -83,3 +83,26 @@ async def get_nickname(message: types.Message, state: FSMContext):
 
     await message.answer(f'✅ Теперь я знаю, что ваш никнейм - {nickname}', reply_markup=back)
     await state.reset_state(True)
+
+
+@dp.callback_query_handler(Text(equals='edit_age'))
+async def edit_user_age(call: types.CallbackQuery):
+    await call.message.edit_text('Введите ваш возраст')
+    await GetInfo.age.set()
+
+
+@dp.message_handler(state=GetInfo.age)
+async def get_age(message: types.Message, state: FSMContext):
+    age = message.text
+
+    await message.delete()
+
+    await dp.bot.delete_message(
+        chat_id=message.chat.id,
+        message_id=message.message_id - 1
+    )
+
+    await message.answer(f'Теперь я знаю, что тебе {age} лет', reply_markup=back)
+    await state.reset_state(True)
+
+
