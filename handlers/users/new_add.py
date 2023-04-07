@@ -125,6 +125,7 @@ async def get_game(call: types.CallbackQuery):
     await call.message.answer('Теперь напиши описание к своему объявлению\n'
                               '(<i>это может быть что угодно, к примеру, режим игры, твои требования к потенциальному тиммейту и т.д.</i>)')
 
+
 @dp.message_handler(state=GetInfo.description)
 async def get_description(message: types.Message, state: FSMContext):
     '''Так же сделать подвязку к личной информации, дабы отобразить объявление перед публикацией'''
