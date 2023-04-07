@@ -28,9 +28,7 @@ async def get_game(call: types.CallbackQuery):
     data = int(call.data.split('_')[1])
 
     if data == 1:
-        await call.message.edit_text('Dota 2?\n\n'
-                                     'Отличный выбор!\n'
-                                     'Напиши мне, для какого режима и т.д. ты ищешь тимейтов.')
+        await call.message.edit_text('Твой выбор - Dota 2')
 
         await GetInfo.description.set()
 
@@ -45,6 +43,87 @@ async def get_game(call: types.CallbackQuery):
             }
         )
 
+    elif data == 2:
+        await call.message.edit_text('Твой выбор - CS:GO')
+
+        await GetInfo.description.set()
+
+        state = dp.current_state(
+            chat=call.message.chat.id,
+            user=call.from_user.id
+        )
+
+        await state.update_data(
+            {
+                'game': 'CS:GO'
+            }
+        )
+
+    elif data == 3:
+        await call.message.edit_text('Твой выбор - Minecraft')
+
+        await GetInfo.description.set()
+
+        state = dp.current_state(
+            chat=call.message.chat.id,
+            user=call.from_user.id
+        )
+
+        await state.update_data(
+            {
+                'game': 'Minecraft'
+            }
+        )
+
+    elif data == 4:
+        await call.message.edit_text('Твой выбор - Fortnite')
+
+        await GetInfo.description.set()
+
+        state = dp.current_state(
+            chat=call.message.chat.id,
+            user=call.from_user.id
+        )
+
+        await state.update_data(
+            {
+                'game': 'Fortnite'
+            }
+        )
+
+    elif data == 5:
+        await call.message.edit_text('Твой выбор - Roblox')
+
+        await GetInfo.description.set()
+
+        state = dp.current_state(
+            chat=call.message.chat.id,
+            user=call.from_user.id
+        )
+
+        await state.update_data(
+            {
+                'game': 'Roblox'
+            }
+        )
+
+    elif data == 6:
+        await call.message.edit_text('Твой выбор - Dead by Daylight')
+
+        await GetInfo.description.set()
+
+        state = dp.current_state(
+            chat=call.message.chat.id,
+            user=call.from_user.id
+        )
+
+        await state.update_data(
+            {
+                'game': 'Dead by Daylight'
+            }
+        )
+    await call.message.answer('Теперь напиши описание к своему объявлению\n'
+                              '(<i>это может быть что угодно, к примеру, режим игры, твои требования к потенциальному тиммейту и т.д.</i>)')
 
 @dp.message_handler(state=GetInfo.description)
 async def get_description(message: types.Message, state: FSMContext):
@@ -55,11 +134,8 @@ async def get_description(message: types.Message, state: FSMContext):
 
     game = data.get('game')
 
-    await message.answer('Готово! Ваше объявление выглядит так:\n'
-                         f'Имя: {None}\n'
-                         f'Возраст: {None}\n'
-                         f'Никнейм: {None}\n'
-                         f'Игра: {game}\n'
-                         f'Описание: {description}')
+    await message.answer('Теперь твоё объявление выглядит так:\n'
+                         f'{None} ({None}), {None}, {game}\n'
+                         f'{description}')
 
     await state.reset_state(True)
