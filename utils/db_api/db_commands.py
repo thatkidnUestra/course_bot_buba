@@ -1,6 +1,6 @@
 from asgiref.sync import sync_to_async
 
-from admin_panel.telebot.models import Users
+from admin_panel.telebot.models import Users, Games, Adds
 
 
 @sync_to_async()
@@ -16,3 +16,44 @@ def get_user(telegram_id):
 @sync_to_async()
 def update_name(telegram_id, name):
     Users.objects.filter(telegram_id=telegram_id).update(name=name)
+
+
+@sync_to_async()
+def get_user_info(telegram_id):
+    data = Users.objects.filter(telegram_id=telegram_id).first()
+
+    if data.name is None or data.nickname is None or data.age is None:
+        return True
+    else:
+        return False
+
+
+@sync_to_async()
+def get_user(telegram_id):
+    return Users.objects.filter(telegram_id=telegram_id).first()
+
+
+@sync_to_async()
+def get_games():
+    return Games.objects.all()
+
+
+@sync_to_async()
+def get_game_by_id(game_id):
+    return Games.objects.filter(id=game_id).first()
+
+
+@sync_to_async()
+def create_row_adds(owner_id, name, nickname, age, description):
+    Adds.objects.get_or_create(
+        owner=owner_id,
+        name=name,
+        nickname=nickname,
+        age=age,
+        description=description
+    )
+
+
+@sync_to_async()
+def get_info_row(owner_id):
+    return Adds.objects.filter(owner=owner_id).first()

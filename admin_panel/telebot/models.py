@@ -20,3 +20,34 @@ class Users(models.Model):
     age = models.IntegerField(
         null=True
     )
+
+
+class Games(models.Model):
+    name = models.CharField(
+        null=True,
+        max_length=500
+    )
+
+
+class Adds(models.Model):
+
+    owner = models.BigIntegerField()
+
+    name = models.CharField(
+        null=True,
+        max_length=30
+    )
+
+    nickname = models.CharField(
+        null=True,
+        max_length=30
+    )
+
+    age = models.IntegerField(
+        null=True
+    )
+
+    description = models.CharField(
+        null=True,
+        max_length=30000
+    )

@@ -1,6 +1,7 @@
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
+from django.contrib.sites import requests
 
 from keyboards.inline.back_kb import back
 from keyboards.inline.edit_self_keyboard import edit_kb
