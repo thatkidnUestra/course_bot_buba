@@ -44,16 +44,27 @@ def get_game_by_id(game_id):
 
 
 @sync_to_async()
-def create_row_adds(owner_id, name, nickname, age, description):
+def create_row_adds(owner_id, name, nickname, age, description, game):
     Adds.objects.get_or_create(
         owner=owner_id,
         name=name,
         nickname=nickname,
         age=age,
-        description=description
+        description=description,
+        game=game
     )
 
 
 @sync_to_async()
 def get_info_row(owner_id):
     return Adds.objects.filter(owner=owner_id).first()
+
+
+@sync_to_async()
+def update_game(owner_id, game):
+    Adds.objects.filter(owner=owner_id).update(game=game)
+
+
+@sync_to_async()
+def update_desc(owner_id, desk):
+    Adds.objects.filter(owner=owner_id).update(description=desk)

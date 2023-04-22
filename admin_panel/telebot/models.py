@@ -51,3 +51,8 @@ class Adds(models.Model):
         null=True,
         max_length=30000
     )
+
+    game = models.CharField(
+        null=True,
+        max_length=5000
+    )
