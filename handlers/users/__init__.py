@@ -5,4 +5,7 @@ from .start import dp
 # from .get_file_id import dp
 from .edit_self import dp
 from .new_add import dp
+from .my_add import dp
+from .edit_add import dp
+
 __all__ = ["dp"]

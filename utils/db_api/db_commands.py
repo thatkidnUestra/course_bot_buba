@@ -66,5 +66,5 @@ def update_game(owner_id, game):
 
 
 @sync_to_async()
-def update_desc(owner_id, desk):
-    Adds.objects.filter(owner=owner_id).update(description=desk)
+def update_desc(owner_id, desсription):
+    Adds.objects.filter(owner=owner_id).update(description=desсription)

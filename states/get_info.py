@@ -7,3 +7,5 @@ class GetInfo(StatesGroup):
     age = State()
 
     description = State()
+
+    edit_desc = State()
