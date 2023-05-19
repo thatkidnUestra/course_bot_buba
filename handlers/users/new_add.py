@@ -10,14 +10,14 @@ from states.get_info import GetInfo
 from utils.db_api.db_commands import get_user_info, get_game_by_id, get_user, create_row_adds, get_info_row, update_game
 
 
-@dp.message_handler(text='📩 Новое объявление')
+@dp.message_handler(text='📩 Разместить новое объявление')
 async def new_add_user(message: types.Message):
     '''Добавить проверку на наличие инфы о человеке'''
 
     data = await get_user_info(message.from_user.id)
 
     if data:
-        await message.answer('❌ У тебя не заполнена личная информация.\n', reply_markup=edit_kb)
+        await message.answer('❌ Для начала, заполни личную информацию \n', reply_markup=edit_kb)
     else:
         add = await get_info_row(message.from_user.id)
 
@@ -65,7 +65,7 @@ async def get_description(message: types.Message, state: FSMContext):
 
     game = data.get('game')
 
-    await message.answer('Теперь твоё объявление выглядит так:\n\n'
+    await message.answer('Смотри на свой шедевр:\n\n'
                          f'{user_data.name} ({user_data.nickname}), {user_data.age} лет, {game}\n\n'
                          f'{description}')
 

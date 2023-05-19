@@ -5,10 +5,10 @@ menu = ReplyKeyboardMarkup(resize_keyboard=True, keyboard=[
         KeyboardButton(text='👀 Смотреть объявления'),
     ],
     [
-        KeyboardButton(text='📩 Новое объявление'),
-        KeyboardButton(text='📝 Изменить "О себе"')
+        KeyboardButton(text='📩 Создать новое объявление'),
+        KeyboardButton(text='📝 Изменить личную информацию')
     ],
     [
-        KeyboardButton(text='🧑‍💻 Моё объявление')
+        KeyboardButton(text='‍💻 Просмотр моего объявления')
     ]
 ])

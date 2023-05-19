@@ -17,15 +17,14 @@ async def go_edit(call: types.CallbackQuery):
     nickname = data.nickname
     age = data.age
 
-    await call.message.edit_text('👌 Отлично!\n'
-                                 '📘 Так выглядит текущая информация о тебе:\n'
+    await call.message.edit_text('📘 Ниже ты можешь увидеть свои данные:\n'
                                  f'▫️ Имя: {"Неизвестно" if name is None else name}\n'
                                  f'▫️ Никнейм: {"Неизвестно" if nickname is None else nickname}\n'
                                  f'▫️ Возраст: {"Неизвестно" if age is None else age}\n\n'
-                                 f'👇 Выбери то, что необходимо изменить.', reply_markup=edit_kb)
+                                 f'👇 Под сообщением находится кнопка, по которой ты сможешь изменить всё это', reply_markup=edit_kb)
 
 
-@dp.message_handler(text='📝 Изменить "О себе"')
+@dp.message_handler(text='📝 Изменить личную информацию')
 async def edit_btn(message: types.Message):
     await message.delete()
 
@@ -38,12 +37,11 @@ async def edit_btn(message: types.Message):
     nickname = data.nickname
     age = data.age
 
-    await message.answer('👌 Отлично!\n'
-                         '📘 Так выглядит текущая информация о тебе:\n'
+    await message.answer('📘 Ниже ты можешь увидеть свои данные:\n'
                          f'▫️ Имя: {"Неизвестно" if name is None else name}\n'
                          f'▫️ Никнейм: {"Неизвестно" if nickname is None else nickname}\n'
                          f'▫️ Возраст: {"Неизвестно" if age is None else age}\n\n'
-                         f'👇 Выбери то, что необходимо изменить.', reply_markup=edit_kb)
+                         f'👇 Под сообщением находится кнопка, по которой ты сможешь изменить всё это', reply_markup=edit_kb)
 
 
 @dp.callback_query_handler(Text(equals='edit_name'))
@@ -64,7 +62,7 @@ async def get_name(message: types.Message, state: FSMContext):
         message_id=message.message_id - 1
     )
 
-    await message.answer(f'✅ Теперь я знаю, что вас зовут - {name}', reply_markup=back)
+    await message.answer(f'✅ Имя успешно изменено на {name}', reply_markup=back)
     await state.reset_state(True)
 
 
@@ -85,13 +83,13 @@ async def get_nickname(message: types.Message, state: FSMContext):
         message_id=message.message_id - 1
     )
 
-    await message.answer(f'✅ Теперь я знаю, что ваш никнейм - {nickname}', reply_markup=back)
+    await message.answer(f'✅ Никнейм успешно изменён на {nickname}', reply_markup=back)
     await state.reset_state(True)
 
 
 @dp.callback_query_handler(Text(equals='edit_age'))
 async def edit_user_age(call: types.CallbackQuery):
-    await call.message.edit_text('Введите ваш возраст')
+    await call.message.edit_text('Введите ваш возраст (только число)')
     await GetInfo.age.set()
 
 
@@ -108,8 +106,8 @@ async def get_age(message: types.Message, state: FSMContext):
             message_id=message.message_id - 1
         )
 
-        await message.answer(f'Теперь я знаю, что тебе {age} лет', reply_markup=back)
+        await message.answer(f'Теперь ваш возраст - {age}', reply_markup=back)
         await state.reset_state(True)
 
     else:
-        await message.answer('Вы ввели не число. Попробуйте еще раз.')
+        await message.answer('Мне требуется только ЧИСЛО, соответствующее вашему возрасту, ничего более')
