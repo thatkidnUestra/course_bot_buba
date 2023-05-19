@@ -68,3 +68,8 @@ def update_game(owner_id, game):
 @sync_to_async()
 def update_desc(owner_id, desсription):
     Adds.objects.filter(owner=owner_id).update(description=desсription)
+
+
+@sync_to_async()
+def get_all_adds():
+    return Adds.objects.order_by('?').all()

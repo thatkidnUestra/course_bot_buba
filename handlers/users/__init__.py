@@ -7,5 +7,7 @@ from .edit_self import dp
 from .new_add import dp
 from .my_add import dp
 from .edit_add import dp
+from .show_add import dp
+from .sending_invite import dp
 
 __all__ = ["dp"]
