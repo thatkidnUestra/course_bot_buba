@@ -7,7 +7,6 @@ from loader import dp
 from utils.db_api.db_commands import get_all_adds, get_info_row, get_user
 
 
-
 @dp.callback_query_handler(Text(startswith='send_'))
 async def send_invite(call: types.CallbackQuery):
     telegram_id = call.data.split('_')[1]
